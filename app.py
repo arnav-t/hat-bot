@@ -39,7 +39,8 @@ def read():
 			print(hat['Quality'] + ' ' +  hat['Name'] + ': ' + str(profit))
 			newData.append(hat)
 
-	return jsonify(newData)
+	sortedData = sorted(newData, key=lambda k: int(k['Price']), reverse=True) 
+	return jsonify(sortedData)
 
 if __name__ == '__main__':
 	app.run(debug = True)
