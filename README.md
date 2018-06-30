@@ -1,2 +1,2 @@
 # hat-bot
-Hat Banking Bot
+`chromium-browser -n --user-data-dir --disable-web-security`
