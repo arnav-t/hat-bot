@@ -4,10 +4,13 @@ var innerDoc;
 function selectElement(row)
 {
 	var itemSelected = row.getElementsByTagName('td')[1].innerHTML;
-	if(row.getElementsByTagName('td')[0].innerHTML === 'Strange')
+	var itemQuality = row.getElementsByTagName('td')[0].innerHTML;
+	if(itemQuality === 'Strange')
 		itemSelected = 'Strange ' + itemSelected
 	var inputText = innerDoc.getElementsByClassName('inventory-search')[0]
 	inputText.value = itemSelected;
+	url = "https://backpack.tf/stats/" + itemQuality + "/" + itemSelected.split(' ').join('+').split("'").join("%27") + "/Tradable/Craftable";
+	window.open(url)
 }
 
 iframe.onload = function ()
