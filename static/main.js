@@ -5,10 +5,11 @@ function selectElement(row)
 {
 	var itemSelected = row.getElementsByTagName('td')[1].innerHTML;
 	var itemQuality = row.getElementsByTagName('td')[0].innerHTML;
+	var searchText = itemSelected
 	if(itemQuality === 'Strange')
-		itemSelected = 'Strange ' + itemSelected
+		searchText = 'Strange ' + itemSelected
 	var inputText = innerDoc.getElementsByClassName('inventory-search')[0]
-	inputText.value = itemSelected;
+	inputText.value = searchText;
 	url = "https://backpack.tf/stats/" + itemQuality + "/" + itemSelected.split(' ').join('+').split("'").join("%27") + "/Tradable/Craftable";
 	window.open(url)
 }
