@@ -37,6 +37,7 @@ def read():
 		profit = price - int(hat['Price'])
 		if profit > 0:
 			print(hat['Quality'] + ' ' +  hat['Name'] + ': ' + str(profit))
+			hat['Price'] = profit
 			newData.append(hat)
 
 	sortedData = sorted(newData, key=lambda k: int(k['Price']), reverse=True) 
