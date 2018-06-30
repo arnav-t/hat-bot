@@ -1,6 +1,14 @@
 var iframe = document.getElementsByTagName('iframe')[0];
 var innerDoc;
 
+function selectElement(row)
+{
+	var itemSelected = row.getElementsByTagName('td')[1].innerHTML;
+	if(row.getElementsByTagName('td')[0].innerHTML === 'Strange')
+		itemSelected = 'Strange ' + itemSelected
+	var inputText = innerDoc.getElementsByClassName('inventory-search')[0]
+	inputText.value = itemSelected;
+}
 
 iframe.onload = function ()
 {
@@ -50,7 +58,7 @@ function loadItems()
 	req.done(function(data) {
 		for(var i=0; i<data.length; ++i)
 		{
-			var row = '<tr>';
+			var row = '<tr onclick="selectElement(this)">';
 			row += '<td>' + data[i]['Quality'] + '</td>';
 			row += '<td>' + data[i]['Name'] + '</td>';
 			row += '<td>' + data[i]['Price'] + '</td>';
