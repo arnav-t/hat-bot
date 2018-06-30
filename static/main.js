@@ -40,11 +40,22 @@ function loadItems()
 		    });
 		}
     }
-    $.ajax({
+    req = $.ajax({
 	 	type: "POST",
 	 	contentType: "application/json; charset=utf-8",
 	 	url: "/ajax",
 	 	data: JSON.stringify(hats),
 	  	dataType: "json"
+	});
+	req.done(function(data) {
+		for(var i=0; i<data.length; ++i)
+		{
+			var row = '<tr>';
+			row += '<td>' + data[i]['Quality'] + '</td>';
+			row += '<td>' + data[i]['Name'] + '</td>';
+			row += '<td>' + data[i]['Price'] + '</td>';
+			row += '</tr>';
+			$('#table-body').append(row);
+		}
 	});
 }

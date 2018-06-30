@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, Response
+from flask import Flask, render_template, url_for, request, Response, redirect, jsonify
 import json
 
 app = Flask(__name__)
@@ -10,11 +10,7 @@ def home():
 @app.route('/ajax', methods = ['POST'])
 def read():
 	data = request.get_json()
-	result = ''
-	for hat in data:
-		result += str(hat['Quality']) + ' ' + str(hat['Name']) + ' : ' + str(hat['Price']) + '\n'
-	print(result)
-	return result
+	return jsonify(data)
 
 if __name__ == '__main__':
 	app.run(debug = True)
