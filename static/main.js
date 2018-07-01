@@ -17,6 +17,7 @@ function selectElement(row)
 iframe.onload = function ()
 {
 	innerDoc = iframe.contentWindow.document;
+	innerDoc.getElementsByClassName('inventory-search')[0].value = ''
 }
 
 function refreshFrame()
@@ -27,6 +28,7 @@ function refreshFrame()
 
 function loadItems()
 {
+	document.getElementById('table-body').innerHTML = '';
 	var hats = [];
 	var divList = innerDoc.getElementsByTagName('div');
 	for(var i = 0; i < divList.length; ++i)
