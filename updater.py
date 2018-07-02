@@ -43,7 +43,7 @@ def updateRecords(fromNum, forNum, pid, totalUpdated):
 	print("Process {} completed.".format(str(pid)))
 
 if __name__ == '__main__':
-	processes = 63
+	processes = 12
 	if len(sys.argv) > 1:
 		processes = int(sys.argv[1])
 	connection = sqlite3.connect("hats.db")
