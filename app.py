@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, Response, redirect, jsonify
 import json, sqlite3
-from cost import getPrice, string2scrap
+from cost import getPrice, string2scrap, scrap2string, scrap2ref
 
 app = Flask(__name__)
 
@@ -37,10 +37,11 @@ def read():
 		profit = price - int(hat['Price'])
 		if profit > 0:
 			print(hat['Quality'] + ' ' +  hat['Name'] + ': ' + str(profit))
-			hat['Price'] = profit
+			hat['Profit'] = profit
+			hat['Price'] = scrap2string(int(hat['Price']))
 			newData.append(hat)
 
-	sortedData = sorted(newData, key=lambda k: int(k['Price']), reverse=True) 
+	sortedData = sorted(newData, key=lambda k: int(k['Profit']), reverse=True) 
 	return jsonify(sortedData)
 
 if __name__ == '__main__':

@@ -41,6 +41,22 @@ def string2scrap(strPrice):
 
 	return int(round(price))
 
+def scrap2ref(scraps):
+	ref = 9
+	return str(int(scraps/ref)) + '.' + str((scraps%ref)*11) + ' ref'
+
+def scrap2string(scraps):
+	ref = 9
+	key = 36*ref
+	if scraps < key:
+		return scrap2ref(scraps)
+	else:
+		keys = int(scraps/key)
+		strPrice = str(keys) + ' key'
+		if keys == 1:
+			return strPrice + ', ' + scrap2ref(scraps%key)
+		else:
+			return strPrice + 's, ' + scrap2ref(scraps%key)
 
 if __name__ == '__main__':
 	quality = input('Quality: ')
