@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	<title>Hat Flipper v1.0</title>
 	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +15,10 @@
 </head>
 <body>
 	<nav id="top-nav" class="navbar navbar-expand-sm bg-dark navbar-dark text-light">
-		<a class="navbar-brand" href="/">Hat Bot v1.0</a>
+		<a class="navbar-brand" href="/">
+			<img src="{{ url_for('static', filename='wrench_white.png') }}" width="30" height="30" alt="">
+			Hat Bot v1.0
+		</a>
 	</nav>
 	<div id="mid-div" class="row">
 		<div id="frame-div" class="col-lg-8 pr-0 card">
