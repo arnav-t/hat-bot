@@ -8,6 +8,10 @@ app = Flask(__name__)
 def home():
 	return render_template('home.html')
 
+@app.route('/notify')
+def notify():
+	return render_template('found.html')
+
 @app.route('/ajax', methods = ['POST'])
 def read():
 	data = request.get_json()

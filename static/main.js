@@ -1,5 +1,7 @@
 var iframe = document.getElementsByTagName('iframe')[0];
 var innerDoc;
+var timer;
+var time;
 
 function selectElement(row)
 {
@@ -18,6 +20,11 @@ function refreshFrame()
 {
 	iframe.contentWindow.location.reload(true);
 	iframe.contentWindow.location.href = "https://scrap.tf/buy/hats";
+}
+
+function notifyUser()
+{
+	window.open('/notify');
 }
 
 function loadItems()
@@ -59,8 +66,12 @@ function loadItems()
 	});
 	req.done(function(data) {
 		document.getElementById('table-body').innerHTML = '';
+		var minProfit = document.getElementById('min-input').value;
+		var notify = false;
 		for(var i=0; i<data.length; ++i)
 		{
+			if(data[i]['Profit'] >= minProfit)
+				notify = true;
 			var row = '<tr onclick="selectElement(this)">';
 			row += '<td>' + data[i]['Quality'] + '</td>';
 			row += '<td>' + data[i]['Name'] + '</td>';
@@ -70,6 +81,8 @@ function loadItems()
 			row += '</tr>';
 			$('#table-body').append(row);
 		}
+		if(notify && document.getElementById('enable-check').checked)
+			notifyUser();
 	});
 }
 
@@ -87,4 +100,42 @@ iframe.onload = function ()
 		return;
 	}
 	loadItems();
+}
+
+function timerHandler()
+{
+	if(document.getElementById('enable-check').checked)
+	{
+		time -= 1;
+		document.getElementById('time-text').innerHTML = String(time);
+		if(time == 0)
+		{
+			delay = document.getElementById('delay-input').value;
+			if(!delay) {
+				delay = 15;
+				document.getElementById('delay-input').value = delay;
+			}
+			time = delay; 
+			refreshFrame();
+		}
+	}
+}
+
+function toggleAR(inputBox)
+{
+	if(inputBox.checked)
+	{
+		delay = document.getElementById('delay-input').value;
+		if(!delay) {
+			delay = 15;
+			document.getElementById('delay-input').value = delay;
+		}
+		time = delay;
+		timer = setInterval(timerHandler, 1000);
+	}
+	else
+	{
+		clearInterval(timer);
+		document.getElementById('time-text').innerHTML = '...';
+	}
 }
