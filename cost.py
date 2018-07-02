@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
+def getListing(quality, name):
+	return "https://backpack.tf/stats/{}/{}/Tradable/Craftable".format(quality, name.replace(' ', '+').replace("'","%27"))
 
 def getPrice(quality, name):
 	url = "https://backpack.tf/stats/{}/{}/Tradable/Craftable".format(quality, name.replace(' ', '+').replace("'","%27"))

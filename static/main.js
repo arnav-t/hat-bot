@@ -10,8 +10,8 @@ function selectElement(row)
 		searchText = 'Strange ' + itemSelected
 	var inputText = innerDoc.getElementsByClassName('inventory-search')[0]
 	inputText.value = searchText;
-	url = "https://backpack.tf/stats/" + itemQuality + "/" + itemSelected.split(' ').join('+').split("'").join("%27") + "/Tradable/Craftable";
-	window.open(url)
+	// url = "https://backpack.tf/stats/" + itemQuality + "/" + itemSelected.split(' ').join('+').split("'").join("%27") + "/Tradable/Craftable";
+	// window.open(url)
 }
 
 iframe.onload = function ()
@@ -71,6 +71,7 @@ function loadItems()
 			row += '<td>' + data[i]['Name'] + '</td>';
 			row += '<td>' + data[i]['strProfit'] + '</td>';
 			row += '<td>' + data[i]['Price'] + '</td>';
+			row += '<td>' + '<button type="button" class="my-0 btn btn-primary" onclick=window.open("' + data[i]['Listing'] + '")>Check</button>'+ '</td>';
 			row += '</tr>';
 			$('#table-body').append(row);
 		}
