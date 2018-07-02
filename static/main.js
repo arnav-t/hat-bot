@@ -14,12 +14,6 @@ function selectElement(row)
 	// window.open(url)
 }
 
-iframe.onload = function ()
-{
-	innerDoc = iframe.contentWindow.document;
-	innerDoc.getElementsByClassName('inventory-search')[0].value = ''
-}
-
 function refreshFrame()
 {
 	iframe.contentWindow.location.reload(true);
@@ -28,7 +22,7 @@ function refreshFrame()
 
 function loadItems()
 {
-	document.getElementById('table-body').innerHTML = '';
+	document.getElementById('table-body').innerHTML = '<h3 class="text-center text-muted">Loading...</h3>';
 	var hats = [];
 	var divList = innerDoc.getElementsByTagName('div');
 	for(var i = 0; i < divList.length; ++i)
@@ -64,6 +58,7 @@ function loadItems()
 	  	dataType: "json"
 	});
 	req.done(function(data) {
+		document.getElementById('table-body').innerHTML = '';
 		for(var i=0; i<data.length; ++i)
 		{
 			var row = '<tr onclick="selectElement(this)">';
@@ -76,4 +71,20 @@ function loadItems()
 			$('#table-body').append(row);
 		}
 	});
+}
+
+iframe.onload = function ()
+{
+	try
+	{
+		innerDoc = iframe.contentWindow.document;
+		innerDoc.getElementsByClassName('inventory-search')[0].value = ''
+	}
+	catch(e)
+	{
+		console.log('Frame error detected. Reloading...');
+		refreshFrame();
+		return;
+	}
+	loadItems();
 }
