@@ -69,7 +69,7 @@ function loadItems()
 			var row = '<tr onclick="selectElement(this)">';
 			row += '<td>' + data[i]['Quality'] + '</td>';
 			row += '<td>' + data[i]['Name'] + '</td>';
-			row += '<td>' + data[i]['Profit'] + '</td>';
+			row += '<td>' + data[i]['strProfit'] + '</td>';
 			row += '<td>' + data[i]['Price'] + '</td>';
 			row += '</tr>';
 			$('#table-body').append(row);

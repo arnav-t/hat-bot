@@ -38,6 +38,7 @@ def read():
 		if profit > 0:
 			print(hat['Quality'] + ' ' +  hat['Name'] + ': ' + str(profit))
 			hat['Profit'] = profit
+			hat['strProfit'] = scrap2string(profit)
 			hat['Price'] = scrap2string(int(hat['Price']))
 			newData.append(hat)
 
