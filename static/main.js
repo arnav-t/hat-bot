@@ -35,6 +35,8 @@ function loadItems()
     {
     	if(divList[i].classList.contains('item'))
 		{
+			if(divList[i].parentNode.parentNode.id == 'user-bp-440')
+				continue;
 			var itemName = divList[i].getAttribute("data-title").split("&apos;").join("'");
 			var itemValue = parseInt(divList[i].getAttribute("data-item-value"));
 			var quality = "Unique";
