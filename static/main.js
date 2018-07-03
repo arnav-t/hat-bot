@@ -28,6 +28,7 @@ function refreshFrame()
 function notifyUser()
 {
 	window.open('/notify');
+	document.getElementById('enable-check').click();
 }
 
 function loadItems()
