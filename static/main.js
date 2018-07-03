@@ -12,6 +12,9 @@ function selectElement(row)
 		searchText = 'Strange ' + itemSelected
 	var inputText = innerDoc.getElementsByClassName('inventory-search')[0]
 	inputText.value = searchText;
+	inputText.focus();
+	var enterEvent = $.Event( "keyup", { keyCode: 13 } );
+	$(inputText).trigger(enterEvent);
 	// url = "https://backpack.tf/stats/" + itemQuality + "/" + itemSelected.split(' ').join('+').split("'").join("%27") + "/Tradable/Craftable";
 	// window.open(url)
 }
